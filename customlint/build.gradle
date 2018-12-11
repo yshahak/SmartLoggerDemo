@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+dependencies {
+
+    def lint_version = "26.2.1" //this correspond to gradle plugin version 3.2.1. The rule is to add 23 to the first number
+    compileOnly "com.android.tools.lint:lint-api:$lint_version"
+    compileOnly "com.android.tools.lint:lint-checks:$lint_version"
+
+    testImplementation "com.android.tools.lint:lint-tests:$lint_version"
+    testImplementation "com.android.tools.lint:lint:$lint_version"
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry-v2": "com.thedroidboy.customlint.SmartLoggerIssueRegistry")
+    }
+}
